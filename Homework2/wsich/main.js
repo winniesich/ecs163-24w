@@ -475,10 +475,10 @@ g5.append("text")
     .attr("x", 1410)
     .attr("y", 20)
     .style("text-anchor", "middle")
-    .text("Job Types Salary vs Experience Level Parallel Plot");
+    .text("Different Data Job Types Salary vs Experience Level Parallel Plot");
 
 // Draw lines
-Object.entries(jobs).forEach(([jobType, data]) => {
+Object.entries(jobs).forEach(([jobType, data, i]) => {
     const line = d3.line()
         .x(d => xScale(d.experienceLevel))
         .y(d => yScale(d.salary));
@@ -489,14 +489,68 @@ Object.entries(jobs).forEach(([jobType, data]) => {
         .attr("stroke", () => {
             // Assign different colors to different job types
             if (jobType === "DE") return "steelblue";
-            if (jobType === "DS") return "green";
-            if (jobType === "DA") return "green";
-            if (jobType === "ML") return "green";
+            else if (jobType === "DS") return "#F72C25";
+            else if (jobType === "DA") return "#2A2C24";
+            else if (jobType === "ML") return "#F7C548";
             // Add more color assignments as needed
         })
         .attr("d", line)
         .attr("transform", `translate(1100, 50)`);
-}); 
+
+
+        // Legend
+        g5.append("circle")
+            .attr("cx", 800)
+            .attr("cy", 40)
+            .attr("r", 6)
+            .style("fill", "steelblue")      
+
+        g5.append("circle")
+            .attr("cx",800)
+            .attr("cy",70)
+            .attr("r", 6)
+            .style("fill", "#F72C25")        
+        
+        g5.append("circle")
+            .attr("cx",800)
+            .attr("cy",100)
+            .attr("r", 6)
+            .style("fill", "#2A2C24")    
+            
+        g5.append("circle")
+            .attr("cx",800)
+            .attr("cy",130)
+            .attr("r", 6)
+            .style("fill", "#F7C548")        
+
+        g5.append("text")
+            .attr("x", 820)
+            .attr("y", 40)
+            .text("Data Engineer")
+            .style("font-size", "16px")
+            .attr("alignment-baseline","middle")      
+            
+        g5.append("text")
+            .attr("x", 820)
+            .attr("y", 70)
+            .text("Data Scientist")
+            .style("font-size", "16px")
+            .attr("alignment-baseline","middle")        
+
+        g5.append("text")
+            .attr("x", 820)
+            .attr("y", 100)
+            .text("Data Analyst")
+            .style("font-size", "16px")
+            .attr("alignment-baseline","middle") 
+            
+        g5.append("text")
+            .attr("x", 820)
+            .attr("y", 130)
+            .text("Machine Learning Engineer")
+            .style("font-size", "16px")
+            .attr("alignment-baseline","middle")        
+        }); 
 
 
 
